@@ -5,37 +5,33 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . 'plugged')
-	" Utils
+	"" Utils
 	Plug 'mcchrish/nnn.vim'
 	Plug 'preservim/nerdcommenter'
 	Plug 'preservim/nerdtree'
-	"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-	" Languages
+	"" Languages
 	Plug 'thesis/vim-solidity'
 	Plug 'octol/vim-cpp-enhanced-highlight'
 	
-	" LSP
-	Plug 'L3MON4D3/LuaSnip'
-	Plug 'chen244/rust-tools.nvim'
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/nvim-cmp'
+	""" LSP
+	" LSP CLIENT
 	Plug 'neovim/nvim-lspconfig'
-	Plug 'nikvdp/nvim-lsp-config'
-	Plug 'nvim-lua/lsp-status.nvim'
-	Plug 'saadparwaiz1/cmp_luasnip'
-	Plug 'tamago324/nlsp-settings.nvim'
 	Plug 'williamboman/nvim-lsp-installer'
+	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+	Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+	Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
-	" Themes
+	" CONFIG
+	Plug 'nikvdp/nvim-lsp-config'
+	Plug 'tamago324/nlsp-settings.nvim'
+	Plug 'nvim-lua/lsp-status.nvim'
+
+	" Language specific
+	Plug 'chen244/rust-tools.nvim'
+
+	"" Themes
 	Plug 'Haron-Prime/Antares'
-	"Plug 'bluz71/vim-moonfly-colors'
-	"Plug 'djjcast/mirodark'
-	"Plug 'neg-serg/neg'
-	"Plug 'nikolvs/vim-sunbather'
-	"Plug 'ryanpcmcquen/true-monochrome_vim'
-	"Plug 't184256/vim-boring'
-	"Plug 'zaki/zazen'
 call plug#end()
 
 let c_space_errors = 1
