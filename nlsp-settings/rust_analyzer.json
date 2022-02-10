@@ -1,0 +1,7 @@
+{
+        "rust-analyzer.diagnostics.disabled": [
+          "unresolved-import"
+        ],
+	"rust-analyzer.updates.channel": "nightly"
+}
+
