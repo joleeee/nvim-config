@@ -5,32 +5,31 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin(stdpath('data') . 'plugged')
-	"" Utils
+	" Utils
 	Plug 'mcchrish/nnn.vim'
 	Plug 'preservim/nerdcommenter'
 	Plug 'preservim/nerdtree'
 
-	"" Languages
+	" Languages
 	Plug 'thesis/vim-solidity'
 	Plug 'octol/vim-cpp-enhanced-highlight'
 	
-	""" LSP
-	" LSP CLIENT
+	" LSP client
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'williamboman/nvim-lsp-installer'
 	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 	Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 	Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
-	" CONFIG
+	" LSP Config
 	Plug 'nikvdp/nvim-lsp-config'
 	Plug 'tamago324/nlsp-settings.nvim'
 	Plug 'nvim-lua/lsp-status.nvim'
 
-	" Language specific
+	" LSP Language specific
 	Plug 'chen244/rust-tools.nvim'
 
-	"" Themes
+	" Themes
 	Plug 'Haron-Prime/Antares'
 call plug#end()
 
@@ -52,13 +51,12 @@ nnoremap <leader>r :!"%:p"<Enter>
 
 " THEME
 colorscheme antares
-"highlight Pmenu ctermbg=gray guibg=gray
 
 " SOURCE
-"source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/lsp/init.lua
 source $HOME/.config/nvim/lsp/kb.vim
 
+" NLSP settings
 lua <<EOF
 local nlspsettings = require("nlspsettings")
 nlspsettings.setup({
@@ -69,9 +67,6 @@ nlspsettings.setup({
 EOF
 
 " Statusline
-
-"set statusline^=\ %#StatusLine#%f\ %#Conceal#
-			                    "\ %{coc#status()}%{get(b:,'coc_current_function','')}
 set statusline^=\ %#StatusLine#%f\ %#Conceal#%{LspStatus()}
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
@@ -80,5 +75,3 @@ function! LspStatus() abort
 
   return ''
 endfunction
-
-
