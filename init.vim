@@ -17,9 +17,15 @@ call plug#begin(stdpath('data') . 'plugged')
 	" LSP client
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'williamboman/nvim-lsp-installer'
-	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-	Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-	Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+	" LSP cmp
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/cmp-path'
+	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-vsnip'
+	Plug 'hrsh7th/vim-vsnip'
 
 	" LSP Config
 	Plug 'nikvdp/nvim-lsp-config'
