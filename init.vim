@@ -66,20 +66,20 @@ let g:lightline = {
 \ }
 
 let g:lightline.component_expand = {
-      \  'linter_hints': 'lightline#lsp#hints',
-      \  'linter_infos': 'lightline#lsp#infos',
-      \  'linter_warnings': 'lightline#lsp#warnings',
-      \  'linter_errors': 'lightline#lsp#errors',
-      \  'linter_ok': 'lightline#lsp#ok',
-      \ }
+	\ 'linter_hints': 'lightline#lsp#hints',
+	\ 'linter_infos': 'lightline#lsp#infos',
+	\ 'linter_warnings': 'lightline#lsp#warnings',
+	\ 'linter_errors': 'lightline#lsp#errors',
+	\ 'linter_ok': 'lightline#lsp#ok',
+	\ }
 
 let g:lightline.component_type = {
-      \     'linter_hints': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
+	\ 'linter_hints': 'right',
+	\ 'linter_infos': 'right',
+	\ 'linter_warnings': 'warning',
+	\ 'linter_errors': 'error',
+	\ 'linter_ok': 'right',
+	\ }
 
 function! JoleName()
 	let l:path = expand('%')
@@ -113,9 +113,9 @@ source $HOME/.config/nvim/lsp/kb.vim
 lua <<EOF
 local nlspsettings = require("nlspsettings")
 nlspsettings.setup({
-  config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
-  local_settings_root_markers = { '.git' },
-  jsonls_append_default_schemas = true
+	config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+	local_settings_root_markers = { '.git' },
+	jsonls_append_default_schemas = true
 })
 EOF
 
@@ -178,6 +178,6 @@ require('gitsigns').setup {
 EOF
 
 augroup lightline#lsp
-  autocmd!
-  autocmd User LspDiagnosticsChanged call lightline#update()
+	autocmd!
+	autocmd User LspDiagnosticsChanged call lightline#update()
 augroup END
