@@ -60,9 +60,9 @@ let g:lightline = {
 \ 'tabline': 0
 \ },
 \ 'active': {
-\	'left' : [ ['mode', 'paste'], ['jolename']],
+\	'left' : [ ['mode', 'paste'], ['jolename'], ['jolestatus']],
 \ 	'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ] ]  },
-\ 'component_function': { 'jolename': 'JoleName' }
+\ 'component_function': { 'jolename': 'JoleName' , 'jolestatus': 'JoleStatus'}
 \ }
 
 let g:lightline.component_expand = {
@@ -88,6 +88,12 @@ function! JoleName()
 endfunction
 
 "let g:lightline.active = { 'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ]] }
+function! JoleStatus()
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		return luaeval("require('lsp-status').status()")
+	endif
+	return ''
+endfunction
 
 " binds
 imap jk <Esc>
@@ -112,16 +118,6 @@ nlspsettings.setup({
   jsonls_append_default_schemas = true
 })
 EOF
-
-" Statusline
-"set statusline^=\ %#StatusLine#%f\ %#Conceal#%{LspStatus()}
-"function! LspStatus() abort
-  "if luaeval('#vim.lsp.buf_get_clients() > 0')
-    "return luaeval("require('lsp-status').status()")
-  "endif
-
-  "return ''
-"endfunction
 
 set cursorline
 set number
