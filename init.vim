@@ -53,48 +53,6 @@ let c_space_errors = 1
 map ; <Nop>
 let mapleader = ";"
 
-" lightline
-set noshowmode
-let g:lightline = {
-\ 'enable': {
-\ 'tabline': 0
-\ },
-\ 'active': {
-\	'left' : [ ['mode', 'paste'], ['jolename'], ['jolestatus']],
-\ 	'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ] ]  },
-\ 'component_function': { 'jolename': 'JoleName' , 'jolestatus': 'JoleStatus'}
-\ }
-
-let g:lightline.component_expand = {
-	\ 'linter_hints': 'lightline#lsp#hints',
-	\ 'linter_infos': 'lightline#lsp#infos',
-	\ 'linter_warnings': 'lightline#lsp#warnings',
-	\ 'linter_errors': 'lightline#lsp#errors',
-	\ 'linter_ok': 'lightline#lsp#ok',
-	\ }
-
-let g:lightline.component_type = {
-	\ 'linter_hints': 'right',
-	\ 'linter_infos': 'right',
-	\ 'linter_warnings': 'warning',
-	\ 'linter_errors': 'error',
-	\ 'linter_ok': 'right',
-	\ }
-
-function! JoleName()
-	let l:path = expand('%')
-	return l:path
-	"return pathshorten(l:path)
-endfunction
-
-"let g:lightline.active = { 'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ]] }
-function! JoleStatus()
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		return luaeval("require('lsp-status').status()")
-	endif
-	return ''
-endfunction
-
 " binds
 imap jk <Esc>
 set timeoutlen=800
@@ -108,6 +66,8 @@ colorscheme antares
 " SOURCE
 source $HOME/.config/nvim/lsp/init.lua
 source $HOME/.config/nvim/lsp/kb.vim
+source $HOME/.config/nvim/gitsigns.lua
+source $HOME/.config/nvim/lightline.vim
 
 " NLSP settings
 lua <<EOF
@@ -118,6 +78,8 @@ nlspsettings.setup({
 	jsonls_append_default_schemas = true
 })
 EOF
+
+set noshowmode "lightline shows this anyway
 
 set cursorline
 set number
@@ -132,52 +94,3 @@ set termguicolors
 lua << EOF
   require('cokeline').setup()
 EOF
-
-lua << EOF
-require('gitsigns').setup {
-	signs = {
-		add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-		change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-		delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-		topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-		changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-	},
-	signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-	numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-	linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-	word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-	watch_gitdir = {
-		interval = 1000,
-		follow_files = true
-	},
-	attach_to_untracked = true,
-	current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-	current_line_blame_opts = {
-		virt_text = true,
-		virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-		delay = 1000,
-		ignore_whitespace = false,
-	},
-	current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-	sign_priority = 6,
-	update_debounce = 100,
-	status_formatter = nil, -- Use default
-	max_file_length = 40000,
-	preview_config = {
-		-- Options passed to nvim_open_win
-		border = 'single',
-		style = 'minimal',
-		relative = 'cursor',
-		row = 0,
-		col = 1
-	},
-		yadm = {
-		enable = false
-	},
-}
-EOF
-
-augroup lightline#lsp
-	autocmd!
-	autocmd User LspDiagnosticsChanged call lightline#update()
-augroup END
