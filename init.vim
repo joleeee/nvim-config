@@ -13,6 +13,7 @@ call plug#begin(stdpath('data') . 'plugged')
 	" Languages
 	Plug 'thesis/vim-solidity'
 	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'joleeee/vim-yulp'
 	
 	" LSP client
 	Plug 'neovim/nvim-lspconfig'
@@ -33,20 +34,60 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'nvim-lua/lsp-status.nvim'
 
 	" LSP Language specific
-	Plug 'chen244/rust-tools.nvim'
+	"Plug 'chen244/rust-tools.nvim'
+	Plug 'simrat39/rust-tools.nvim'
 
 	" Themes
 	Plug 'Haron-Prime/Antares'
+	Plug 'itchyny/lightline.vim'
+	Plug 'spywhere/lightline-lsp'
+	Plug 'kyazdani42/nvim-web-devicons' " If you want devicons
+	Plug 'noib3/nvim-cokeline' " bufferline
+
+	" Git
+	Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 let c_space_errors = 1
 
+map ; <Nop>
 let mapleader = ";"
 
-" SNIPS
-nnoremap ;c	:-1read $HOME/.config/nvim/snips/skeleton.c<CR>/{<CR>:noh<CR>o
-nnoremap ;h	:-1read $HOME/.config/nvim/snips/index.html<CR>5jo
-nnoremap ;y	:-1read $HOME/.config/nvim/snips/skeleton.py<CR>o
+" lightline
+set noshowmode
+let g:lightline = {
+\ 'enable': {
+\ 'tabline': 0
+\ },
+\ 'active': {
+\	'left' : [ ['mode', 'paste'], ['jolename']],
+\ 	'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ] ]  },
+\ 'component_function': { 'jolename': 'JoleName' }
+\ }
+
+let g:lightline.component_expand = {
+      \  'linter_hints': 'lightline#lsp#hints',
+      \  'linter_infos': 'lightline#lsp#infos',
+      \  'linter_warnings': 'lightline#lsp#warnings',
+      \  'linter_errors': 'lightline#lsp#errors',
+      \  'linter_ok': 'lightline#lsp#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_hints': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+
+function! JoleName()
+	let l:path = expand('%')
+	return l:path
+	"return pathshorten(l:path)
+endfunction
+
+"let g:lightline.active = { 'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ]] }
 
 " binds
 imap jk <Esc>
@@ -73,11 +114,74 @@ nlspsettings.setup({
 EOF
 
 " Statusline
-set statusline^=\ %#StatusLine#%f\ %#Conceal#%{LspStatus()}
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
+"set statusline^=\ %#StatusLine#%f\ %#Conceal#%{LspStatus()}
+"function! LspStatus() abort
+  "if luaeval('#vim.lsp.buf_get_clients() > 0')
+    "return luaeval("require('lsp-status').status()")
+  "endif
 
-  return ''
-endfunction
+  "return ''
+"endfunction
+
+set cursorline
+set number
+set relativenumber
+
+set smartcase
+set ignorecase
+set hlsearch
+set incsearch
+
+set termguicolors
+lua << EOF
+  require('cokeline').setup()
+EOF
+
+lua << EOF
+require('gitsigns').setup {
+	signs = {
+		add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+		change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+		delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+		topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+		changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+	},
+	signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+	numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+	linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+	word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+	watch_gitdir = {
+		interval = 1000,
+		follow_files = true
+	},
+	attach_to_untracked = true,
+	current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+	current_line_blame_opts = {
+		virt_text = true,
+		virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+		delay = 1000,
+		ignore_whitespace = false,
+	},
+	current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+	sign_priority = 6,
+	update_debounce = 100,
+	status_formatter = nil, -- Use default
+	max_file_length = 40000,
+	preview_config = {
+		-- Options passed to nvim_open_win
+		border = 'single',
+		style = 'minimal',
+		relative = 'cursor',
+		row = 0,
+		col = 1
+	},
+		yadm = {
+		enable = false
+	},
+}
+EOF
+
+augroup lightline#lsp
+  autocmd!
+  autocmd User LspDiagnosticsChanged call lightline#update()
+augroup END

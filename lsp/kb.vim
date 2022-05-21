@@ -14,6 +14,14 @@ set hidden
 "endif
 set signcolumn=no
 
+" For some reason cokeline has another ordering than the built in buffer-order
+" therefore just use its binds...
+nmap <silent> <C-p> <Plug>(cokeline-focus-prev)
+nmap <silent> <C-n> <Plug>(cokeline-focus-next)
+
+nmap <silent> <A-p> <Plug>(cokeline-switch-prev)
+nmap <silent> <A-n> <Plug>(cokeline-switch-next)
+
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -45,6 +53,7 @@ nmap <silent> ]g <cmd>lua vim.diagnostic.goto_next()<CR>
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nmap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 "nmap <silent> gd <Plug>(coc-definition)
 "nmap <silent> gy <Plug>(coc-type-definition)
 "nmap <silent> gi <Plug>(coc-implementation)
