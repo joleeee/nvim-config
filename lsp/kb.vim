@@ -12,7 +12,7 @@ set hidden
 "else
   "set signcolumn=yes
 "endif
-set signcolumn=no
+set signcolumn=yes
 
 " For some reason cokeline has another ordering than the built in buffer-order
 " therefore just use its binds...
