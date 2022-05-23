@@ -39,7 +39,7 @@ end
 lsp_installer.on_server_ready(function(server)
 	-- Specify the default options which we'll use to setup all servers
 	local opts = {
-		on_attach = lspstatus.on_attach,
+		--on_attach = lspstatus.on_attach,
 		capabilities = capabilities,
 	}
 
