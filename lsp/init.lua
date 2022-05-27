@@ -1,24 +1,24 @@
-local lsp_installer = require "nvim-lsp-installer"
+local lsp_installer = require("nvim-lsp-installer")
 
 -- status
-local lspstatus = require('lsp-status')
+local lspstatus = require("lsp-status")
 lspstatus.config({
-	status_symbol = '',
+	status_symbol = "",
 	show_filename = false,
-	indicator_errors = 'E',
-	indicator_warnings = 'W',
-	indicator_info = 'I',
-	indicator_hint = 'H',
-	indicator_ok = '',
-	indicator_separator = '',
+	indicator_errors = "E",
+	indicator_warnings = "W",
+	indicator_info = "I",
+	indicator_hint = "H",
+	indicator_ok = "",
+	indicator_separator = "",
 })
 lspstatus.register_progress()
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local lspconfig = require('lspconfig')
+local lspconfig = require("lspconfig")
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
@@ -44,13 +44,13 @@ lsp_installer.on_server_ready(function(server)
 	}
 
 	if server.name == "rust_analyzer" then
-		require("rust-tools").setup {
+		require("rust-tools").setup({
 			-- The "server" property provided in rust-tools setup function are the
 			-- settings rust-tools will provide to lspconfig during init.    --
 			-- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
 			-- with the user's own settings (opts).
 			server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
-		}
+		})
 		server:attach_buffers()
 	else
 		server:setup(opts)
@@ -67,24 +67,24 @@ local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
-local cmp = require 'cmp'
-cmp.setup {
+local cmp = require("cmp")
+cmp.setup({
 	snippet = {
 		expand = function(args)
 			vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
 	mapping = {
-		['<C-k>'] = cmp.mapping.select_prev_item(),
-		['<C-j>'] = cmp.mapping.select_next_item(),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm {
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-f>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.close(),
+		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
-		},
+		}),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -106,7 +106,7 @@ cmp.setup {
 		end, { "i", "s" }),
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'vsnip' },
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
 	},
-}
+})
