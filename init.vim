@@ -68,16 +68,8 @@ source $HOME/.config/nvim/lsp/init.lua
 source $HOME/.config/nvim/lsp/kb.vim
 source $HOME/.config/nvim/gitsigns.lua
 source $HOME/.config/nvim/lightline.vim
-
-" NLSP settings
-lua <<EOF
-local nlspsettings = require("nlspsettings")
-nlspsettings.setup({
-	config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
-	local_settings_root_markers = { '.git' },
-	jsonls_append_default_schemas = true
-})
-EOF
+source $HOME/.config/nvim/cokeline.lua
+source $HOME/.config/nvim/nlspsettings.lua
 
 set noshowmode "lightline shows this anyway
 
@@ -91,6 +83,3 @@ set hlsearch
 set incsearch
 
 set termguicolors
-lua << EOF
-  require('cokeline').setup()
-EOF
