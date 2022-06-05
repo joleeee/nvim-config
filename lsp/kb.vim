@@ -37,5 +37,4 @@ nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nmap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 
 " Formatting selected code / all code
-xmap <leader>f  <cmd>lua vim.lsp.buf.formatting()<CR>
-nmap <silent> f <cmd>lua vim.lsp.buf.formatting()<CR>
+nmap <leader>f  <cmd>lua vim.lsp.buf.formatting()<CR>
