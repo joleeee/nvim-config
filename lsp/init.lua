@@ -1,4 +1,6 @@
-local lsp_installer = require("nvim-lsp-installer")
+require("nvim-lsp-installer").setup {
+	automatic_installation = true
+}
 
 -- status
 local lspstatus = require("lsp-status")
@@ -19,43 +21,11 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local lspconfig = require("lspconfig")
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = {
-	"rust_analyzer",
-	"pyright",
-	"yamlls",
-	"sumneko_lua",
-	"clangd",
-}
-for _, name in pairs(servers) do
-	local server_is_found, server = lsp_installer.get_server(name)
-	if server_is_found and not server:is_installed() then
-		print("Installing " .. name)
-		server:install()
-	end
-end
-
-lsp_installer.on_server_ready(function(server)
-	-- Specify the default options which we'll use to setup all servers
-	local opts = {
-		--on_attach = lspstatus.on_attach,
-		capabilities = capabilities,
-	}
-
-	if server.name == "rust_analyzer" then
-		require("rust-tools").setup({
-			-- The "server" property provided in rust-tools setup function are the
-			-- settings rust-tools will provide to lspconfig during init.    --
-			-- We merge the necessary settings from nvim-lsp-installer (server:get_default_options())
-			-- with the user's own settings (opts).
-			server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
-		})
-		server:attach_buffers()
-	else
-		server:setup(opts)
-	end
-end)
+lspconfig.rust_analyzer.setup {}
+lspconfig.pyright.setup {}
+lspconfig.yamlls.setup {}
+lspconfig.sumneko_lua.setup {}
+lspconfig.clangd.setup {}
 
 -- CMP
 local has_words_before = function()
