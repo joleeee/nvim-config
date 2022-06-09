@@ -27,3 +27,5 @@ for _, server in pairs(langs) do
 		capabilities = capabilities,
 	}
 end
+
+require("rust-tools").setup {}
