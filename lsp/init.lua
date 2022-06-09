@@ -1,6 +1,6 @@
-require("nvim-lsp-installer").setup {
-	automatic_installation = true
-}
+require("nvim-lsp-installer").setup({
+	automatic_installation = true,
+})
 
 -- status
 local lspstatus = require("lsp-status")
@@ -21,11 +21,11 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 local lspconfig = require("lspconfig")
 
-local langs = { 'rust_analyzer', 'gopls', 'pyright', 'yamlls', 'sumneko_lua', 'clangd' }
+local langs = { "rust_analyzer", "gopls", "pyright", "yamlls", "sumneko_lua", "clangd" }
 for _, server in pairs(langs) do
-	lspconfig[server].setup {
+	lspconfig[server].setup({
 		capabilities = capabilities,
-	}
+	})
 end
 
-require("rust-tools").setup {}
+require("rust-tools").setup({})
