@@ -17,12 +17,13 @@ lspstatus.config({
 lspstatus.register_progress()
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local lspconfig = require("lspconfig")
-lspconfig.rust_analyzer.setup {}
-lspconfig.pyright.setup {}
-lspconfig.yamlls.setup {}
-lspconfig.sumneko_lua.setup {}
-lspconfig.clangd.setup {}
+
+local langs = { 'rust_analyzer', 'pyright', 'yamlls', 'sumneko_lua', 'clangd' }
+for _, server in pairs(langs) do
+	lspconfig[server].setup {
+		capabilities = capabilities,
+	}
+end
