@@ -65,6 +65,7 @@ colorscheme antares
 
 " SOURCE
 source $HOME/.config/nvim/lsp/init.lua
+source $HOME/.config/nvim/lsp/cmp.lua
 source $HOME/.config/nvim/lsp/kb.vim
 source $HOME/.config/nvim/gitsigns.lua
 source $HOME/.config/nvim/lightline.vim
