@@ -25,7 +25,7 @@ nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nmap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nmap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-"nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " Use K to show documentation in preview window.
 nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
