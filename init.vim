@@ -59,6 +59,7 @@ set timeoutlen=800
 nnoremap <leader>p :NnnPicker %:p:h<CR>
 nnoremap <leader>n :NnnExplorer %:p:h<CR>
 nnoremap <leader>r :!"%:p"<Enter>
+command Bd bp | sp | bn | bd
 
 " THEME
 colorscheme antares
