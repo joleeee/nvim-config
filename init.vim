@@ -9,6 +9,9 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'mcchrish/nnn.vim'
 	Plug 'preservim/nerdcommenter'
 	Plug 'preservim/nerdtree'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'nvim-telescope/telescope-ui-select.nvim'
 
 	" Languages
 	Plug 'thesis/vim-solidity'
@@ -72,6 +75,7 @@ source $HOME/.config/nvim/gitsigns.lua
 source $HOME/.config/nvim/lightline.vim
 source $HOME/.config/nvim/cokeline.lua
 source $HOME/.config/nvim/nlspsettings.lua
+source $HOME/.config/nvim/telescope.lua
 
 set noshowmode "lightline shows this anyway
 
