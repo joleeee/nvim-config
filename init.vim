@@ -34,7 +34,9 @@ call plug#begin(stdpath('data') . 'plugged')
 	" LSP Config
 	Plug 'nikvdp/nvim-lsp-config'
 	Plug 'tamago324/nlsp-settings.nvim'
-	Plug 'nvim-lua/lsp-status.nvim'
+	" temporary fix
+	" Plug 'nvim-lua/lsp-status.nvim'
+	Plug 'JonatanLima/lsp-status.nvim'
 
 	" LSP Language specific
 	"Plug 'chen244/rust-tools.nvim'
