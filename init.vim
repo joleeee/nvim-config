@@ -73,11 +73,11 @@ colorscheme antares
 source $HOME/.config/nvim/lsp/init.lua
 source $HOME/.config/nvim/lsp/cmp.lua
 source $HOME/.config/nvim/lsp/kb.vim
-source $HOME/.config/nvim/gitsigns.lua
-source $HOME/.config/nvim/lightline.vim
-source $HOME/.config/nvim/cokeline.lua
-source $HOME/.config/nvim/nlspsettings.lua
-source $HOME/.config/nvim/telescope.lua
+source $HOME/.config/nvim/plugins/gitsigns.lua
+source $HOME/.config/nvim/plugins/lightline.vim
+source $HOME/.config/nvim/plugins/cokeline.lua
+source $HOME/.config/nvim/plugins/nlspsettings.lua
+source $HOME/.config/nvim/plugins/telescope.lua
 
 set noshowmode "lightline shows this anyway
 
