@@ -69,14 +69,18 @@ command Bd bp | sp | bn | bd
 colorscheme antares
 
 " SOURCE
-source $HOME/.config/nvim/lsp/init.lua
-source $HOME/.config/nvim/lsp/cmp.lua
-source $HOME/.config/nvim/lsp/kb.vim
-source $HOME/.config/nvim/plugins/gitsigns.lua
-source $HOME/.config/nvim/plugins/lightline.vim
-source $HOME/.config/nvim/plugins/cokeline.lua
-source $HOME/.config/nvim/plugins/nlspsettings.lua
-source $HOME/.config/nvim/plugins/telescope.lua
+for f in [
+	\ 'lsp/init.lua',
+	\ 'lsp/cmp.lua',
+	\ 'lsp/kb.vim',
+	\ 'plugins/gitsigns.lua',
+	\ 'plugins/lightline.vim',
+	\ 'plugins/cokeline.lua',
+	\ 'plugins/nlspsettings.lua',
+	\ 'plugins/telescope.lua',
+	\]
+	exec "source " . stdpath('config') . '/' . f
+endfor
 
 set noshowmode "lightline shows this anyway
 
