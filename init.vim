@@ -39,7 +39,6 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'JonatanLima/lsp-status.nvim'
 
 	" LSP Language specific
-	"Plug 'chen244/rust-tools.nvim'
 	Plug 'simrat39/rust-tools.nvim'
 
 	" Themes
