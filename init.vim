@@ -43,7 +43,7 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'simrat39/rust-tools.nvim'
 
 	" Themes
-	Plug 'Haron-Prime/Antares'
+	Plug 'bluz71/vim-moonfly-colors'
 	Plug 'itchyny/lightline.vim'
 	Plug 'spywhere/lightline-lsp'
 	Plug 'kyazdani42/nvim-web-devicons' " If you want devicons
@@ -67,7 +67,7 @@ nnoremap <leader>r :!"%:p"<Enter>
 command Bd bp | sp | bn | bd
 
 " THEME
-colorscheme antares
+colorscheme moonfly
 
 " SOURCE
 for f in [
