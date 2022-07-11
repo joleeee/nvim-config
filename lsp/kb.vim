@@ -49,5 +49,11 @@ autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
 " Symbol renaming.
 nmap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 
-" Formatting selected code / all code
-nmap <leader>f  <cmd>lua vim.lsp.buf.formatting()<CR>
+" language [S]erver
+nmap <leader>sf  <cmd>lua vim.lsp.buf.formatting()<CR>
+
+" [T]elescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
