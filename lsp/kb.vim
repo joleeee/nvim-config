@@ -41,8 +41,10 @@ nmap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>
 " Use K to show documentation in preview window.
 nmap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 
-" Highlight the symbol and its references when holding the cursor.
-"autocmd CursorHold * silent call CocActionAsync('highlight')
+" Highlight refs
+nmap <silent> <C-k> <cmd>lua vim.lsp.buf.document_highlight()<CR>
+autocmd CursorMoved  * lua vim.lsp.buf.clear_references()
+autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
 
 " Symbol renaming.
 nmap <F2> <cmd>lua vim.lsp.buf.rename()<CR>

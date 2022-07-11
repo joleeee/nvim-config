@@ -95,3 +95,8 @@ set hlsearch
 set incsearch
 
 set termguicolors
+
+" hover highlights (document_highlight) (copy from Visual)
+hi LspReferenceText ctermbg=238 guibg=#505050
+hi LspReferenceRead ctermbg=238 guibg=#505050
+hi LspReferenceWrite ctermbg=238 guibg=#505050
