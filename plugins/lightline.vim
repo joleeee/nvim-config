@@ -1,11 +1,22 @@
 let g:lightline = {
 \ 'enable': {
-\ 'tabline': 0
+\   'tabline': 0
 \ },
 \ 'active': {
-\	'left' : [ ['mode', 'paste'], ['jolename'], ['jolestatus']],
-\ 	'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'], [ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ] ]  },
-\ 'component_function': { 'jolename': 'JoleName' , 'jolestatus': 'JoleStatus'}
+\   'left': [ ['mode', 'paste'],
+\             ['jolename'],
+\             ['jolestatus']
+\ ],
+\  'right': [ ['lineinfo'],
+\             ['percent'],
+\             ['fileformat', 'fileencoding', 'filetype'],
+\             ['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok']
+\ ]
+\ },
+\ 'component_function': {
+\   'jolename': 'JoleName',
+\   'jolestatus': 'JoleStatus'
+\ }
 \ }
 
 let g:lightline.component_expand = {
