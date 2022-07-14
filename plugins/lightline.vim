@@ -5,7 +5,7 @@ let g:lightline = {
 \ 'active': {
 \   'left': [ ['mode', 'paste'],
 \             ['jolename'],
-\             ['jolestatus']
+\             ['gitbranch', 'jolestatus']
 \ ],
 \  'right': [ ['lineinfo'],
 \             ['percent'],
@@ -15,7 +15,8 @@ let g:lightline = {
 \ },
 \ 'component_function': {
 \   'jolename': 'JoleName',
-\   'jolestatus': 'JoleStatus'
+\   'jolestatus': 'JoleStatus',
+\   'gitbranch': 'FugitiveHead'
 \ }
 \ }
 

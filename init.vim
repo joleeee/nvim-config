@@ -10,6 +10,7 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'preservim/nerdcommenter'
 	Plug 'preservim/nerdtree'
 	Plug 'nvim-lua/plenary.nvim'
+	Plug 'tpope/vim-fugitive'
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-telescope/telescope-ui-select.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
