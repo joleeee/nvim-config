@@ -31,6 +31,10 @@ nmap <silent> <A-0> <Plug>(cokeline-focus-10)
 nmap <silent> [g <cmd>lua vim.diagnostic.goto_prev()<CR>
 nmap <silent> ]g <cmd>lua vim.diagnostic.goto_next()<CR>
 
+" already used g for ^, use v for 'version control'
+nmap <silent> [v <cmd>lua package.loaded.gitsigns.next_hunk()<CR>
+nmap <silent> ]v <cmd>lua package.loaded.gitsigns.prev_hunk()<CR>
+
 " GoTo code navigation.
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
