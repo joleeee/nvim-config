@@ -32,8 +32,8 @@ nmap <silent> [g <cmd>lua vim.diagnostic.goto_prev()<CR>
 nmap <silent> ]g <cmd>lua vim.diagnostic.goto_next()<CR>
 
 " already used g for ^, use v for 'version control'
-nmap <silent> [v <cmd>lua package.loaded.gitsigns.next_hunk()<CR>
-nmap <silent> ]v <cmd>lua package.loaded.gitsigns.prev_hunk()<CR>
+nmap <silent> [v <cmd>lua package.loaded.gitsigns.prev_hunk()<CR>
+nmap <silent> ]v <cmd>lua package.loaded.gitsigns.next_hunk()<CR>
 
 " GoTo code navigation.
 nmap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
