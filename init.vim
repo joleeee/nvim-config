@@ -1,59 +1,58 @@
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+lua <<EOF
+require('packer').startup(function(use)
+	-- Utils
+	use 'mcchrish/nnn.vim'
+	use 'preservim/nerdcommenter'
+	use 'preservim/nerdtree'
+	use 'nvim-lua/plenary.nvim'
+	use 'tpope/vim-fugitive'
+	use 'nvim-telescope/telescope.nvim'
+	use 'nvim-telescope/telescope-ui-select.nvim'
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
 
-call plug#begin(stdpath('data') . 'plugged')
-	" Utils
-	Plug 'mcchrish/nnn.vim'
-	Plug 'preservim/nerdcommenter'
-	Plug 'preservim/nerdtree'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'nvim-telescope/telescope-ui-select.nvim'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	-- Languages
+	use 'thesis/vim-solidity'
+	use 'octol/vim-cpp-enhanced-highlight'
+	use 'joleeee/vim-yulp'
 
-	" Languages
-	Plug 'thesis/vim-solidity'
-	Plug 'octol/vim-cpp-enhanced-highlight'
-	Plug 'joleeee/vim-yulp'
-	
-	" LSP client
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'williamboman/nvim-lsp-installer'
-	Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+	-- LSP client
+	use 'neovim/nvim-lspconfig'
+	use 'williamboman/nvim-lsp-installer'
+	use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
-	" LSP cmp
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/cmp-buffer'
-	Plug 'hrsh7th/cmp-path'
-	Plug 'hrsh7th/cmp-cmdline'
-	Plug 'hrsh7th/nvim-cmp'
-	Plug 'hrsh7th/cmp-vsnip'
-	Plug 'hrsh7th/vim-vsnip'
+	-- LSP cmp
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7th/vim-vsnip'
 
-	" LSP Config
-	Plug 'nikvdp/nvim-lsp-config'
-	Plug 'tamago324/nlsp-settings.nvim'
-	" temporary fix
-	" Plug 'nvim-lua/lsp-status.nvim'
-	Plug 'JonatanLima/lsp-status.nvim'
+	-- LSP Config
+	use 'nikvdp/nvim-lsp-config'
+	use 'tamago324/nlsp-settings.nvim'
+	-- temporary fix
+	-- use 'nvim-lua/lsp-status.nvim'
+	use 'JonatanLima/lsp-status.nvim'
 
-	" LSP Language specific
-	Plug 'simrat39/rust-tools.nvim'
+	-- LSP Language specific
+	use 'simrat39/rust-tools.nvim'
 
-	" Themes
-	Plug 'bluz71/vim-moonfly-colors'
-	Plug 'itchyny/lightline.vim'
-	Plug 'spywhere/lightline-lsp'
-	Plug 'kyazdani42/nvim-web-devicons' " If you want devicons
-	Plug 'noib3/nvim-cokeline' " bufferline
+	-- Themes
+	use 'bluz71/vim-moonfly-colors'
+	use 'itchyny/lightline.vim'
+	use 'spywhere/lightline-lsp'
+	use 'kyazdani42/nvim-web-devicons' -- If you want devicons
+	use 'noib3/nvim-cokeline' -- bufferline
 
-	" Git
-	Plug 'lewis6991/gitsigns.nvim'
-call plug#end()
+	-- Git
+	use 'lewis6991/gitsigns.nvim'
+end)
+EOF
 
 let c_space_errors = 1
 
