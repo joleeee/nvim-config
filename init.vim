@@ -23,6 +23,7 @@ call plug#begin(stdpath('data') . 'plugged')
 	" LSP client
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'williamboman/nvim-lsp-installer'
+	Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 	" LSP cmp
 	Plug 'hrsh7th/cmp-nvim-lsp'
