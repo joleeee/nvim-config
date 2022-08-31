@@ -17,6 +17,7 @@ require('packer').startup(function(use)
 	use 'thesis/vim-solidity'
 	use 'octol/vim-cpp-enhanced-highlight'
 	use 'joleeee/vim-yulp'
+	use 'ziglang/zig.vim'
 
 	-- LSP client
 	use 'neovim/nvim-lspconfig'
