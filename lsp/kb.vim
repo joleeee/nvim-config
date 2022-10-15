@@ -54,7 +54,7 @@ autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
 nmap <F2> <cmd>lua vim.lsp.buf.rename()<CR>
 
 " language [S]erver
-nmap <leader>sf  <cmd>lua vim.lsp.buf.formatting()<CR>
+nmap <leader>sf <cmd>lua vim.lsp.buf.format { async = true }<CR>
 
 " [T]elescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
