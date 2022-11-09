@@ -16,10 +16,10 @@ lspstatus.config({
 })
 lspstatus.register_progress()
 
-require("lsp_lines").setup({})
-vim.diagnostic.config({
-	virtual_text = false,
-})
+--require("lsp_lines").setup({})
+--vim.diagnostic.config({
+--        virtual_text = false,
+--})
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
