@@ -18,6 +18,7 @@ require('packer').startup(function(use)
 	use 'octol/vim-cpp-enhanced-highlight'
 	use 'joleeee/vim-yulp'
 	use 'ziglang/zig.vim'
+	use 'lervag/vimtex'
 
 	-- LSP client
 	use 'neovim/nvim-lspconfig'
@@ -54,6 +55,10 @@ require('packer').startup(function(use)
 	use 'lewis6991/gitsigns.nvim'
 end)
 EOF
+
+" This is necessary for VimTeX to load properly. The "indent" is optional.
+filetype plugin indent on
+syntax enable
 
 let c_space_errors = 1
 
